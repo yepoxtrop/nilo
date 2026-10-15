@@ -1,7 +1,11 @@
-from enum import Enum
-
 #Preguntas abiertas
-class QuestionMultiple(Enum):
+class QuestionMultiple():
+    
+    QUESTIONS = {
+        #LLAVE:{
+        #    
+        #}
+    }
     MULTIPLE1 = {
         #pregunta,
         #respuesta 
