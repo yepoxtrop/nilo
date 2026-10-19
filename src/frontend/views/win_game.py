@@ -1,0 +1,2 @@
+class WinGameView():
+    pass
