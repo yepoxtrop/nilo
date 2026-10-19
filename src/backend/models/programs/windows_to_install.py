@@ -3,74 +3,24 @@ from enum import Enum;
 
 class WindowsToInstall(Enum):
     
-    LIBREOFFICE = os.path.join(
-        https://download.documentfoundation.org/libreoffice/stable/26.8.1/win/x86_64/LibreOffice_26.8.1_Win_x86-64.msi
-    )
+    LIBREOFFICE =  ("https://download.documentfoundation.org/libreoffice/stable/26.8.1/win/x86_64/LibreOffice_26.8.1_Win_x86-64.msi")
     
-    EDGE = os.path.join(
-        
-    )
+    EDGE =  ("https://download.documentfoundation.org/libreoffice/stable/26.8.1/win/x86_64/LibreOffice_26.8.1_Win_x86-64.msi")
     
-    FIREFOX = os.path.join(
+    FIREFOX =  ("https://download.documentfoundation.org/libreoffice/stable/26.8.1/win/x86_64/LibreOffice_26.8.1_Win_x86-64.msi")
         
-    )
+    OPERA =  ("https://download.documentfoundation.org/libreoffice/stable/26.8.1/win/x86_64/LibreOffice_26.8.1_Win_x86-64.msi")
     
-    FIREFOX  = os.path.join(
-        
-    )
+    STEAM =  ("https://download.documentfoundation.org/libreoffice/stable/26.8.1/win/x86_64/LibreOffice_26.8.1_Win_x86-64.msi")
     
-    OPERA = os.path.join(
-        
-    )
+    VCODE =  ("https://download.documentfoundation.org/libreoffice/stable/26.8.1/win/x86_64/LibreOffice_26.8.1_Win_x86-64.msi")
     
-    STEAM = os.path.join(
-        
-    )
+    INTELLJ =  ("https://download.documentfoundation.org/libreoffice/stable/26.8.1/win/x86_64/LibreOffice_26.8.1_Win_x86-64.msi")
     
-    VCODE = os.path.join(
-        
-    )
+    PYCHARM =  ("https://download.documentfoundation.org/libreoffice/stable/26.8.1/win/x86_64/LibreOffice_26.8.1_Win_x86-64.msi")
     
-    INTELLJ = os.path.join(
-        
-    )
+    WORKBENCH =  ("https://download.documentfoundation.org/libreoffice/stable/26.8.1/win/x86_64/LibreOffice_26.8.1_Win_x86-64.msi")
     
-    PYCHARM = os.path.join(
-        
-    )
+    ECLIPSE =  ("https://download.documentfoundation.org/libreoffice/stable/26.8.1/win/x86_64/LibreOffice_26.8.1_Win_x86-64.msi")
     
-    WORKBENCH = os.path.join(
-        
-    )
     
-    ECLIPSE = os.path.join(
-        
-    )
-    
-    WORD = os.path.join(
-        
-    )
-    
-    EXCEL = os.path.join(
-        
-    )
-    
-    POWERPOINT = os.path.join(
-        
-    )
-    
-    ACCESS = os.path.join(
-        
-    )
-    
-    OUTLOOK = os.path.join(
-        
-    )
-    
-    PUBLISHER = os.path.join(
-        
-    )
-    
-    VICIO = os.path.join(
-        
-    )

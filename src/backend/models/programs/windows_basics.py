@@ -30,9 +30,7 @@ class WindowsBasics(Enum):
     )
     
     NOTEPAD3 = os.path.join(
-        "C:"
-        "Users"
-        "sarmi"
+        os.path.expanduser("~"),
         "AppData"
         "Local"
         "Microsoft"
@@ -71,9 +69,7 @@ class WindowsBasics(Enum):
     )
     
     PAINT = os.path.join(
-        "C:"
-        "Users"
-        "sarmi"
+        os.path.expanduser("~"),
         "AppData"
         "Local"
         "Microsoft"
