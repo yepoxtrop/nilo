@@ -15,7 +15,7 @@ class Interface():
         self.icon = ""
         self.size = "500x500"
         self.moving = False
-        self.lifes = 5
+        self.lifes = 3
         self.question = 20
         
         self.root = tk.Tk()

@@ -154,7 +154,6 @@ class IndexView():
                     list_questions.append(question)
                     break
                 
-        print(list_questions)
         
         self.close_view()
         self.question_view = QuestionView(

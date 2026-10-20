@@ -3,6 +3,7 @@ from tkinter import ttk, messagebox
 from PIL import Image, ImageTk
 import random
 import subprocess
+import time
 
 from ...backend import check_path
 from ...backend.models.programs import WindowsInstalled
@@ -15,8 +16,15 @@ class QuestionView():
         self.lifes = lifes
         self.questions = questions
         self.list_questions = list_questions
+        self.timer_id = None
         
-        self.show_question()
+        if self.lifes>0 and self.questions>0:
+            self.show_question()
+            self.timer_id = self.question.after(1000, self.time_out)
+        elif self.lifes == 0:
+            pass
+        elif self.lifes > 0 and self.questions == 0:
+            pass
     
     def show_question(self):
         self.question = tk.Frame(self.main_view)
@@ -24,6 +32,7 @@ class QuestionView():
             fill="both", 
             expand=True,
         )
+        self.time = 300
         self.question.configure(
             background="#000000"
         )
@@ -66,13 +75,13 @@ class QuestionView():
             background="#000000"
         )
         
-        label_seconds = tk.Label(self.question, text=f"{60*5} S")
-        label_seconds.configure(
+        self.label_seconds = tk.Label(self.question, text=f"{self.time}")
+        self.label_seconds.configure(
             background="#000000",
             fg="#ffffff",
             font=("Segoe UI", 35, "bold"),
         )
-        label_seconds.place(x=370, y=27)
+        self.label_seconds.place(x=370, y=27)
         
         #Frame contenedor
         content_frame = tk.Frame(self.question)
@@ -116,8 +125,7 @@ class QuestionView():
             pady=8,
         )
         frame_options.pack(fill="x", padx=8, pady=(0, 8))
-        
-        if len(self.list_questions[0])>1:
+        if len(self.list_questions[0])>2:
             btn_option1 = tk.Button(frame_options, text=self.list_questions[0][1][0], command=lambda:self.validate_answer(kind="multiple", button_reference=btn_option1))
             btn_option2 = tk.Button(frame_options, text=self.list_questions[0][2][0], command=lambda:self.validate_answer(kind="multiple", button_reference=btn_option2))
             btn_option3 = tk.Button(frame_options, text=self.list_questions[0][3][0], command=lambda:self.validate_answer(kind="multiple", button_reference=btn_option3))
@@ -164,7 +172,7 @@ class QuestionView():
                 button.grid(row=row, column=column, sticky="nsew", padx=5, pady=5)
             
             
-        else:
+        elif len(self.list_questions[0])==2:
             input_answer = tk.Entry(
                 frame_options,
                 background="#24152E",
@@ -210,21 +218,35 @@ class QuestionView():
             button_send.pack(pady=(0, 8))
             
     def validate_answer(self, kind:str, button_reference:tk.Button, value:tk.Entry|None = None):
-        if kind.__eq__("simple"):
+        if kind == "simple":
             
             if self.list_questions[0][1].__eq__(value.get()):
                 print("Respuesta correcta")
                 self.good_answer()
+            else:
+                print("Respuesta Incorrecta")
+                self.bad_answer()
         else:
             
             for i in range (1,5,1):
-                if self.list_questions[0][i][0].__eq__(button_reference.cget("text")):
+                
+                if self.list_questions[0][i][0] == button_reference.cget("text"):
                     if self.list_questions[0][i][1]:
                         print("Respuesta Correcta")
                         self.good_answer()
                     else:
                         print("Respuesta Incorrecta")
+                        self.bad_answer()
+                    return
                         
+    def time_out(self):
+        self.timer_id = None
+        self.time -= 1
+        self.label_seconds.configure(text=str(self.time))
+        if self.time <= 0:
+            self.bad_answer()
+            return
+        self.timer_id = self.question.after(1000, self.time_out)
     
     def good_answer(self):
         self.list_questions.pop(0)
@@ -232,9 +254,22 @@ class QuestionView():
         self.question_view = QuestionView(
             main_view=self.main_view,
             lifes=self.lifes,
-            questions=self.questions,
+            questions=self.questions-1,
+            list_questions=self.list_questions
+        )
+        
+    def bad_answer(self):
+        self.list_questions.pop(0)
+        self.close_view()
+        self.question_view = QuestionView(
+            main_view=self.main_view,
+            lifes=self.lifes-1,
+            questions=self.questions-1,
             list_questions=self.list_questions
         )
     
     def close_view(self):
-        self.question.pack_forget();
+        if self.timer_id is not None:
+            self.question.after_cancel(self.timer_id)
+            self.timer_id = None
+        self.question.destroy()

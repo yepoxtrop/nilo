@@ -1,0 +1,1 @@
+x=msgbox("Se han encontrado fallos en la carpeta del sistema SYSTEM32", 0+16, "ERROR CRITICO EN EL SISTEMA")

@@ -3,26 +3,26 @@ from enum import Enum
 class QuestionMultiple(Enum):
     MULTIPLE1 = (
         "¿Cuál es la representación binaria de 172?",
-        (10101010, False),
-        (10101100, True),
-        (10011100, False),
-        (11001100, False),
+        ("10101010", False),
+        ("10101100", True),
+        ("10011100", False),
+        ("11001100", False),
     )
 
     MULTIPLE2 = (
         "¿Cuál es el valor decimal de 11110000?",
-        (224, False),
-        (248, False),
-        (240, True),
-        (252, False),
+        ("224", False),
+        ("248", False),
+        ("240", True),
+        ("252", False),
     )
 
     MULTIPLE3 = (
         "¿Cuál es el valor decimal del hexadecimal FF?",
-        (15, False),
-        (127, False),
-        (256, False),
-        (255, True),
+        ("15", False),
+        ("127", False),
+        ("256", False),
+        ("255", True),
     )
 
     MULTIPLE4 = (
@@ -83,10 +83,10 @@ class QuestionMultiple(Enum):
 
     MULTIPLE11 = (
         "¿Cuántos hosts utilizables tiene una subred /28?",
-        (16, False),
-        (30, False),
-        (14, True),
-        (62, False),
+        ("16", False),
+        ("30", False),
+        ("14", True),
+        ("62", False),
     )
 
     MULTIPLE12 = (
@@ -131,10 +131,10 @@ class QuestionMultiple(Enum):
 
     MULTIPLE17 = (
         "¿Cuántos bits hay que prestar para obtener al menos 5 subredes con FLSM?",
-        (2, False),
-        (4, False),
-        (5, False),
-        (3, True),
+        ("2", False),
+        ("4", False),
+        ("5", False),
+        ("3", True),
     )
 
     MULTIPLE18 = (
@@ -147,10 +147,10 @@ class QuestionMultiple(Enum):
 
     MULTIPLE19 = (
         "Si se subnetea 172.16.0.0/16 usando máscara /24, ¿cuántas subredes se obtienen?",
-        (256, True),
-        (254, False),
-        (128, False),
-        (1024, False),
+        ("256", True),
+        ("254", False),
+        ("128", False),
+        ("1024", False),
     )
 
     MULTIPLE20 = (
