@@ -8,6 +8,8 @@ import time
 from ...backend import check_path
 from ...backend.models.programs import WindowsInstalled
 from ...backend.models.questions import QuestionMultiple, QuestionSimple
+from .game_over import GameOverView
+from .win_game import WinGameView
 
 class QuestionView():
     
@@ -16,18 +18,21 @@ class QuestionView():
         self.lifes = lifes
         self.questions = questions
         self.list_questions = list_questions
+        self.question = tk.Frame(self.main_view)
         self.timer_id = None
         
         if self.lifes>0 and self.questions>0:
             self.show_question()
             self.timer_id = self.question.after(1000, self.time_out)
         elif self.lifes == 0:
-            pass
+            self.game_over_view = GameOverView(main_view=self.main_view)
+            self.question.destroy()
         elif self.lifes > 0 and self.questions == 0:
-            pass
+            self.win_game_view = WinGameView(main_view=self.main_view)
+            self.question.destroy()
     
     def show_question(self):
-        self.question = tk.Frame(self.main_view)
+        
         self.question.pack(
             fill="both", 
             expand=True,
