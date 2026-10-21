@@ -5,6 +5,7 @@ import keyboard
 
 # Función que quieres ejecutar
 import keyboard
+import time
 #keyboard.send('win+ctrl+shift+b') 
 #keyboard.send('alt+tab') 
 #keyboard.send('win')
@@ -13,7 +14,7 @@ import keyboard
 # keyboard.write('powershell')
 # keyboard.send('enter')
 
-keyboard.send('windows+print screen')
+#keyboard.send('windows+print screen')
 #keyboard.write('el que lo lea es gay')
 # keyboard.send('enter')
 
@@ -25,3 +26,32 @@ keyboard.send('windows+print screen')
 
 
 #keyboard.send('shift+win+s')
+
+keyboard.press("win")
+num = 0
+while num<100:
+    time.sleep(1)
+    keyboard.send("right") 
+    keyboard.send("up") 
+    keyboard.send("down") 
+    keyboard.send("left") 
+    num += 1
+keyboard.release("win")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
