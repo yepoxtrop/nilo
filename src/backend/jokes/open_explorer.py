@@ -76,3 +76,5 @@ class Explorer():
             
         #Ejecuta ventanas de sys32
         Explorer.open_explorer(folder="C:\\Windows\\System32")
+        
+        

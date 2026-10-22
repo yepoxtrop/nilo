@@ -1,11 +1,9 @@
-from src.backend.jokes import Explorer
-import keyboard
-
-# Explorer.stop_explorer()
-
-# Función que quieres ejecutar
 import keyboard
 import time
+from src.backend.jokes import KeyboardCommand
+
+KeyboardCommand.fls_tree()
+
 #keyboard.send('win+ctrl+shift+b') 
 #keyboard.send('alt+tab') 
 #keyboard.send('win')
@@ -22,36 +20,3 @@ import time
 # keyboard.send('enter')
 # keyboard.write('tree')
 # keyboard.send('enter')
-
-
-
-#keyboard.send('shift+win+s')
-
-keyboard.press("win")
-num = 0
-while num<100:
-    time.sleep(1)
-    keyboard.send("right") 
-    keyboard.send("up") 
-    keyboard.send("down") 
-    keyboard.send("left") 
-    num += 1
-keyboard.release("win")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
