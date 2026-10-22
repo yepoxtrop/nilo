@@ -1,1 +1,1 @@
-x=msgbox("Se ha modivo archivo repentinos de los directiorios: Desktop, Downloads y Documents", 0+16, "ERROR INESPERADO EN EL SISTEMA")
+x=msgbox("SIMULATION: Unexpected file changes were detected in Desktop, Downloads, and Documents. Review recent activity.", 0+16, "UNEXPECTED SYSTEM ERROR")

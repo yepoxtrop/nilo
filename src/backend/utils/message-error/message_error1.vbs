@@ -1,1 +1,1 @@
-x=msgbox("Se han encontrado fallos en la carpeta del sistema SYSTEM32", 0+16, "ERROR CRITICO EN EL SISTEMA")
+x=msgbox("SIMULATION: A critical issue has been detected in the SYSTEM32 folder. Immediate review is recommended.", 0+16, "CRITICAL SYSTEM ERROR")

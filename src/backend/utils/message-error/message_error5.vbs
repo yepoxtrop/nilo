@@ -1,1 +1,1 @@
-x=msgbox("Ha fallado la activación del sevicio Microsoft Edge Update Service (edgeupdate) asociado al arquivo rnicrosft.edge.update.ddl", 0+16, "ERROR INESPERADO EN EL SISTEMA")
+x=msgbox("SIMULATION: Microsoft Edge Update Service (edgeupdate) failed to start. Check the service and its associated files.", 0+16, "UNEXPECTED SYSTEM ERROR")
