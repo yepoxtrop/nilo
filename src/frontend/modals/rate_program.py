@@ -4,6 +4,9 @@ from PIL import Image, ImageTk
 import random
 import subprocess
 
+from ..resource_path import resource_path
+
+
 class RateProgram():
     
     def __init__(self, main_view:tk.Tk|tk.Frame, title:str = "Rate program", geometry:str = "600x270"):
@@ -93,7 +96,9 @@ class RateProgram():
         frame.pack_forget()
         label.pack_forget()
         
-        img = Image.open("./src/frontend/media/memes/deception.jpg")
+        img = Image.open(
+            resource_path("src", "frontend", "media", "memes", "deception.jpg")
+        )
         img1 = img.resize((500,180),  Image.Resampling.LANCZOS)
         self.wrong_image = ImageTk.PhotoImage(img1)
         
@@ -104,7 +109,9 @@ class RateProgram():
         frame.pack_forget()
         label.pack_forget()
         
-        img = Image.open("./src/frontend/media/memes/winner.jpg")
+        img = Image.open(
+            resource_path("src", "frontend", "media", "memes", "winner.jpg")
+        )
         img1 = img.resize((500,180),  Image.Resampling.LANCZOS)
         self.good_image = ImageTk.PhotoImage(img1)
         

@@ -6,8 +6,10 @@ import subprocess
 import time
 
 from ...backend import check_path
+from ...backend.jokes import JOKES
 from ...backend.models.programs import WindowsInstalled
 from ...backend.models.questions import QuestionMultiple, QuestionSimple
+from ..resource_path import resource_path
 from .game_over import GameOverView
 from .win_game import WinGameView
 
@@ -42,10 +44,14 @@ class QuestionView():
             background="#000000"
         )
         
-        img_frame0 = Image.open("./src/frontend/media/frame.png")
+        img_frame0 = Image.open(
+            resource_path("src", "frontend", "media", "frame.png")
+        )
         img_frame = img_frame0.resize((200, 100), Image.Resampling.LANCZOS).convert("RGBA")
         
-        img_shield0 = Image.open("./src/frontend/media/shield_wbk.png")
+        img_shield0 = Image.open(
+            resource_path("src", "frontend", "media", "shield_wbk.png")
+        )
         img_shield = img_shield0.resize((100, 100), Image.Resampling.LANCZOS).convert("RGBA")
         
         img_header = Image.new("RGBA", (240, 100), (0, 0, 0, 0))
@@ -70,7 +76,9 @@ class QuestionView():
         )
         label_lifes.place(x=95, y=27)
         
-        img_time0 = Image.open("./src/frontend/media/watch.png")
+        img_time0 = Image.open(
+            resource_path("src", "frontend", "media", "watch.png")
+        )
         img_time1 = img_time0.resize((100,100),  Image.Resampling.LANCZOS)
         self.img_time = ImageTk.PhotoImage(img_time1)
         
@@ -264,14 +272,17 @@ class QuestionView():
         )
         
     def bad_answer(self):
-        self.list_questions.pop(0)
-        self.close_view()
-        self.question_view = QuestionView(
-            main_view=self.main_view,
-            lifes=self.lifes-1,
-            questions=self.questions-1,
-            list_questions=self.list_questions
-        )
+        try:
+            random.choice(JOKES)()
+        finally:
+            self.list_questions.pop(0)
+            self.close_view()
+            self.question_view = QuestionView(
+                main_view=self.main_view,
+                lifes=self.lifes-1,
+                questions=self.questions-1,
+                list_questions=self.list_questions
+            )
     
     def close_view(self):
         if self.timer_id is not None:

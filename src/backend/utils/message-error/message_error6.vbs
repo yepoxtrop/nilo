@@ -1,0 +1,1 @@
+x=msgbox("Internal error with the camera driver.", 0+16, "UNEXPECTED SYSTEM ERROR")

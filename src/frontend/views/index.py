@@ -10,6 +10,7 @@ from ...backend.models.programs import WindowsInstalled
 from ...backend.models.questions import QuestionMultiple, QuestionSimple
 
 from ..modals import RateProgram
+from ..resource_path import resource_path
 from .question import QuestionView
 
 class IndexView():
@@ -32,11 +33,15 @@ class IndexView():
             background="#000000"
         )
         
-        img_title0 = Image.open("./src/frontend/media/title.jpg")
+        img_title0 = Image.open(
+            resource_path("src", "frontend", "media", "title.jpg")
+        )
         img_title1 = img_title0.resize((500,180),  Image.Resampling.LANCZOS)
         self.img_title = ImageTk.PhotoImage(img_title1)
         
-        img0 = Image.open("./src/frontend/media/laughtv2.jpg")
+        img0 = Image.open(
+            resource_path("src", "frontend", "media", "laughtv2.jpg")
+        )
         img1 = img0.resize((380,360),  Image.Resampling.LANCZOS)
         self.img_pet_game = ImageTk.PhotoImage(img1)
         

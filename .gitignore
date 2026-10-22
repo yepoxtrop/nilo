@@ -3,3 +3,14 @@
 _internal/
 **/__pycache__/
 pics/
+
+dist/
+dist_fixed/
+dist_retry/
+
+build/
+build_fixed/
+build_retry/
+
+*.spec
+!Raven.spec

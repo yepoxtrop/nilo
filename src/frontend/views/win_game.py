@@ -10,6 +10,7 @@ import time
 from ...backend import check_path
 from ...backend.models.programs import WindowsInstalled
 from ...backend.models.questions import QuestionMultiple, QuestionSimple
+from ..resource_path import resource_path
 
 
 class WinGameView():
@@ -28,7 +29,9 @@ class WinGameView():
             background="#000000"
         )
         
-        img_game0 = Image.open("./src/frontend/media/winner.jpg")
+        img_game0 = Image.open(
+            resource_path("src", "frontend", "media", "winner.jpg")
+        )
         img_game1 = img_game0.resize((500,300),  Image.Resampling.LANCZOS)
         self.img_game = ImageTk.PhotoImage(img_game1)
                 
@@ -40,7 +43,9 @@ class WinGameView():
         )
         
         
-        img_game_title0 = Image.open("./src/frontend/media/title3.jpg")
+        img_game_title0 = Image.open(
+            resource_path("src", "frontend", "media", "title3.jpg")
+        )
         img_game_title1 = img_game_title0.resize((400,200),  Image.Resampling.LANCZOS)
         self.img_game_title = ImageTk.PhotoImage(img_game_title1)
                 

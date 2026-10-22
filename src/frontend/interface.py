@@ -8,7 +8,10 @@ import subprocess
 from ..backend import check_path
 from ..backend.models.programs import WindowsInstalled
 from .modals import RateProgram
+from .resource_path import resource_path
 from .views import IndexView
+
+
 class Interface():
     def __init__(self):
         self.title = "Raven"
@@ -22,6 +25,13 @@ class Interface():
         self.root.title(self.title)
         self.root.resizable(False, False)
         self.root.geometry(self.size)
+
+        imagen_pil = Image.open(
+            resource_path("src", "frontend", "media", "icon.png")
+        )
+        icono = ImageTk.PhotoImage(imagen_pil)
+        self.root.iconphoto(True, icono)
+
         self.root.configure(
             background="#000000"
         )
