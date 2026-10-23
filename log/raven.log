@@ -1,2 +1,8 @@
-[2026-10-23T12:35:05-05:00] ERROR
-No se encontró el programa para la broma: C:\Users\luis.sarmiento\AppData\Local\Programs\Opera GX\opera.exe
+[2026-10-23T13:02:50-05:00] ERROR
+No se pudo consultar la IP pública ni cargar sus datos
+Traceback (most recent call last):
+  File "src\backend\jokes\ip_adress.py", line 22, in my_public_ip
+    with warning_script.open("r", encoding="utf-8") as warning:
+         ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "pathlib\__init__.py", line 771, in open
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\LUIS~1.SAR\\AppData\\Local\\Temp\\_MEI0000a6342\\src\\backend\\utils\\message-error\\message_error3.vbs'

@@ -15,3 +15,6 @@ build_retry/
 *.spec
 !Raven.spec
 prueba.py
+
+
+**log/

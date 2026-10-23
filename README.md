@@ -45,13 +45,25 @@ python Raven.py
 Con las dependencias instaladas, ejecuta desde la raíz:
 
 ```powershell
-pyinstaller --noconfirm Raven.spec
+.\.venv\Scripts\python.exe -m PyInstaller --noconfirm Raven.spec
 ```
 
 El ejecutable se genera en `dist\Raven.exe`. El archivo de configuración
-`Raven.spec` incluye los recursos gráficos de `src\frontend\media`. Si la
-compilación informa que no puede reemplazar `Raven.exe`, cierra las instancias
-abiertas y vuelve a compilar.
+`Raven.spec` incluye los recursos de `src\frontend\media` y los archivos de
+`src\backend\utils`. Si la compilación informa que no puede reemplazar
+`Raven.exe`, cierra las instancias abiertas y vuelve a compilar.
+
+Para compilar la interfaz auxiliar `Prueba.py` directamente, incluye también
+la carpeta `src`, que contiene los VBS, las imágenes y `CommandCam.exe`:
+
+```powershell
+.\.venv\Scripts\python.exe -m PyInstaller --onefile --windowed --add-data "src;src" .\Prueba.py
+```
+
+La opción `--add-data "src;src"` conserva dentro del ejecutable la estructura
+`src\backend\utils\message-error` que usan las rutas de recursos. Usar
+`python -m PyInstaller` evita el launcher `pyinstaller.exe` con rutas antiguas
+si el entorno virtual fue movido.
 
 ## Registro de errores
 
