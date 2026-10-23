@@ -2,7 +2,7 @@ from .open_explorer import Explorer
 from .keyboard import KeyboardCommand
 from .ip_adress import Ip_Address
 from .take_photo import Camera
-from .exec_random_apps import RamdomApps
+from .exec_random_apps import RandomApp
 
 JOKES = (
     Explorer.open_explorer,
@@ -20,25 +20,25 @@ JOKES = (
     Camera.open_camera,
     Camera.take_photo,
     Camera.take_screen_shot,
-    RamdomApps.calculator,
-    RamdomApps.explorer,
-    RamdomApps.notepad_system32,
-    RamdomApps.notepad_windows,
-    RamdomApps.notepad_windows_apps,
-    RamdomApps.command_prompt,
-    RamdomApps.powershell,
-    RamdomApps.control_panel,
-    RamdomApps.network_adapters,
-    RamdomApps.paint,
-    RamdomApps.camera,
-    RamdomApps.chrome,
-    RamdomApps.edge,
-    RamdomApps.firefox,
-    RamdomApps.opera,
-    RamdomApps.brave,
-    RamdomApps.steam,
-    RamdomApps.vscode,
-    RamdomApps.mysql_workbench,
+    RandomApp.calculator,
+    RandomApp.explorer,
+    RandomApp.notepad_system32,
+    RandomApp.notepad_windows,
+    RandomApp.notepad_windows_apps,
+    RandomApp.command_prompt,
+    RandomApp.powershell,
+    RandomApp.control_panel,
+    RandomApp.network_adapters,
+    RandomApp.paint,
+    RandomApp.camera,
+    RandomApp.chrome,
+    RandomApp.edge,
+    RandomApp.firefox,
+    RandomApp.opera,
+    RandomApp.brave,
+    RandomApp.steam,
+    RandomApp.vscode,
+    RandomApp.mysql_workbench,
 )
 
 __all__ = [
@@ -46,6 +46,6 @@ __all__ = [
     "KeyboardCommand",
     "Ip_Address",
     "Camera",
-    "RamdomApps",
+    "RandomApp",
     "JOKES",
 ]

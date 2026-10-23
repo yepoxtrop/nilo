@@ -6,38 +6,59 @@ import keyboard
 from pathlib import Path
 
 from ..models.programs import WindowsBasics
+from ..utils.logs import Logs
+from ..utils.resource_path import resource_path
+
+
+def _run_message_script(script_name: str) -> None:
+    script_path = resource_path(
+        "src", "backend", "utils", "message-error", script_name
+    )
+    subprocess.Popen(["cscript", "//nologo", str(script_path)])
 
 class Camera():
     
+    @staticmethod
     def open_camera():
         
         if os.path.exists(WindowsBasics.CAMERA.value):
             try:
                 subprocess.Popen([WindowsBasics.CAMERA.value])
-            except:
-                subprocess.Popen("cscript", "src\\backend\\utils\\message-error\\message_error1.vbs")
+            except OSError as error:
+                Logs.error("No se pudo abrir la cámara", error)
+                _run_message_script("message_error6.vbs")
         else:
-            subprocess.Popen("cscript", "src\\backend\\utils\\message-error\\message_error1.vbs")
+            Logs.error(f"No se encontró la aplicación de cámara: {WindowsBasics.CAMERA.value}")
+            _run_message_script("message_error6.vbs")
             
+    @staticmethod
     def take_photo():
         try:
-            subprocess.Popen(["src\\backend\\utils\\take-phtoto\\CommandCam.exe", "/filename output.bmp" ,"/quiet"])
-        except:
-            subprocess.Popen("cscript", "src\\backend\\utils\\message-error\\message_error1.vbs")
+            camera_executable = resource_path(
+                "src", "backend", "utils", "take-phtoto", "CommandCam.exe"
+            )
+            subprocess.Popen([str(camera_executable), "/filename output.bmp", "/quiet"])
+        except OSError as error:
+            Logs.error("No se pudo iniciar la captura de foto", error)
+            _run_message_script("message_error1.vbs")
         Camera.reply_photo("pics", str(Path.home() / "Desktop"))
                 
                 
+    @staticmethod
     def take_screen_shot():    
         try:
             keyboard.send('windows+print screen')
-        except:
-            subprocess.Popen("cscript", "src\\backend\\utils\\message-error\\message_error1.vbs")    
+        except Exception as error:
+            Logs.error("No se pudo tomar la captura de pantalla", error)
+            _run_message_script("message_error1.vbs")
         time.sleep(1)
         Camera.reply_photo(
             str(Path.home() / "Pictures" / "Screenshots"),
             str(Path.home() / "Desktop"),
         )
+        _run_message_script("message_error2.vbs")
             
+    @staticmethod
     def reply_photo(path_origin:str, path_destination:str):
         origin = Path(path_origin)
         destination = Path(path_destination)
@@ -71,6 +92,7 @@ class Camera():
             existing_names.add(copy_name.casefold())
             copies_made += 1
 
+    @staticmethod
     def _show_photo_error(message: str):
-        
-        subprocess.Popen(["cscript", "src\\backend\\utils\\message-error\\message_error6.vbs"])
+        Logs.error(message)
+        _run_message_script("message_error6.vbs")

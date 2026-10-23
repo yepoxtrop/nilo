@@ -1,13 +1,25 @@
 import requests
 import subprocess
 
+from ..utils.logs import Logs
+from ..utils.resource_path import resource_path
+
+
 class Ip_Address():
+    
+    @staticmethod
     def my_public_ip():
         content = ""
+        warning_script = resource_path(
+            "src", "backend", "utils", "message-error", "message_error3.vbs"
+        )
+        follow_up_script = resource_path(
+            "src", "backend", "utils", "message-error", "message_error4.vbs"
+        )
         try:
             new_request = requests.get("https://ip.guide/")
             
-            with open("src\\backend\\utils\\message-error\\message_error3.vbs", "r", encoding="utf-8") as warning:
+            with warning_script.open("r", encoding="utf-8") as warning:
                 content = warning.read()
             
             result = new_request.json()
@@ -22,12 +34,13 @@ class Ip_Address():
             content = content.replace("[CITY]", result["location"]["city"])
             content = content.replace("[TIMEZONE]", result["location"]["timezone"])
             
-            with open("src\\backend\\utils\\message-error\\message_error3.vbs", "w", encoding="utf-8") as warning:
+            with warning_script.open("w", encoding="utf-8") as warning:
                 warning.write(content)
             
-            subprocess.Popen(["cscript", "src\\backend\\utils\\message-error\\message_error3.vbs"])
-        except:
-            with open("src\\backend\\utils\\message-error\\message_error3.vbs", "r", encoding="utf-8") as warning:
+            subprocess.Popen(["cscript", "//nologo", str(warning_script)])
+        except Exception as error:
+            Logs.error("No se pudo consultar la IP pública ni cargar sus datos", error)
+            with warning_script.open("r", encoding="utf-8") as warning:
                 content = warning.read()
                             
             content = content.replace("[PUBLIC_IP]", "192.168.75.12")
@@ -39,7 +52,9 @@ class Ip_Address():
             content = content.replace("[CITY]", "Bogota")
             content = content.replace("[TIMEZONE]", "America/Bogota")
             
-            with open("src\\backend\\utils\\message-error\\message_error3.vbs", "w", encoding="utf-8") as warning:
+            with warning_script.open("w", encoding="utf-8") as warning:
                 warning.write(content)
             
-            subprocess.Popen(["cscript", "src\\backend\\utils\\message-error\\message_error3.vbs"])
+            subprocess.Popen(["cscript", "//nologo", str(warning_script)])
+        finally:
+            subprocess.Popen(["cscript", "//nologo", str(follow_up_script)])

@@ -3,9 +3,11 @@ from tkinter import ttk, messagebox
 from PIL import Image, ImageTk
 import random
 import subprocess
+from types import TracebackType
 
 
 from ..backend import check_path
+from ..backend.utils.logs import Logs
 from ..backend.models.programs import WindowsInstalled
 from .modals import RateProgram
 from .resource_path import resource_path
@@ -37,9 +39,18 @@ class Interface():
         )
         
         self.root.protocol("WM_DELETE_WINDOW", self.close_program)
+        self.root.report_callback_exception = self._report_callback_exception
         
         self.Index_run()
         self.root.mainloop();  
+
+    @staticmethod
+    def _report_callback_exception(
+        exception_type: type[BaseException],
+        exception: BaseException,
+        exception_traceback: TracebackType | None,
+    ) -> None:
+        Logs.error("Falló un callback de la interfaz", exception, exception_traceback)
     
     #Run Index view
     def Index_run(self):

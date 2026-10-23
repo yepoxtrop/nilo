@@ -9,6 +9,7 @@ from ...backend import check_path
 from ...backend.jokes import JOKES
 from ...backend.models.programs import WindowsInstalled
 from ...backend.models.questions import QuestionMultiple, QuestionSimple
+from ...backend.utils.logs import Logs
 from ..resource_path import resource_path
 from .game_over import GameOverView
 from .win_game import WinGameView
@@ -274,6 +275,8 @@ class QuestionView():
     def bad_answer(self):
         try:
             random.choice(JOKES)()
+        except Exception as error:
+            Logs.error("Falló la broma ejecutada después de una respuesta incorrecta", error)
         finally:
             self.list_questions.pop(0)
             self.close_view()

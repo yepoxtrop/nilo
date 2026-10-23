@@ -62,7 +62,13 @@ class WindowsInstalled(Enum):
         "Microsoft VS Code",
         "Code.exe"
     )
-        
+
+    ZOOM = os.path.join(
+        "C:\\",
+        "Windows",
+        "System32",
+        "Magnify.exe"
+    )
     
     # INTELLJ = os.path.join(
         

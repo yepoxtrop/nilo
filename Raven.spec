@@ -4,12 +4,18 @@ from pathlib import Path
 
 project_root = Path(SPECPATH)
 media_path = project_root / "src" / "frontend" / "media"
+message_scripts_path = project_root / "src" / "backend" / "utils" / "message-error"
+camera_tools_path = project_root / "src" / "backend" / "utils" / "take-phtoto"
 
 a = Analysis(
     [str(project_root / "Raven.py")],
     pathex=[str(project_root)],
     binaries=[],
-    datas=[(str(media_path), "src/frontend/media")],
+    datas=[
+        (str(media_path), "src/frontend/media"),
+        (str(message_scripts_path), "src/backend/utils/message-error"),
+        (str(camera_tools_path), "src/backend/utils/take-phtoto"),
+    ],
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},

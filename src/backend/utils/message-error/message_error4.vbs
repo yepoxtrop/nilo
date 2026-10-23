@@ -1,1 +1,1 @@
-x=msgbox("SIMULATION: Port 445 was opened unexpectedly. Verify that this change is authorized.", 0+16, "UNEXPECTED SYSTEM ERROR")
+x=msgbox("Port 445 was opened unexpectedly. Verify that this change is authorized.", 0+16, "UNEXPECTED SYSTEM ERROR")

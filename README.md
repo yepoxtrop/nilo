@@ -53,6 +53,13 @@ El ejecutable se genera en `dist\Raven.exe`. El archivo de configuración
 compilación informa que no puede reemplazar `Raven.exe`, cierra las instancias
 abiertas y vuelve a compilar.
 
+## Registro de errores
+
+Cuando falla una broma, un callback de la interfaz o el inicio de la aplicación,
+Raven guarda el detalle en `log\raven.log`. El archivo se sobrescribe en cada
+fallo para conservar solo el más reciente. Al ejecutar `dist\Raven.exe`, la
+carpeta `log` se crea junto al ejecutable cuando ocurre un fallo.
+
 ## Recursos gráficos
 
 Las imágenes de la interfaz están en [`src/frontend/media`](./src/frontend/media).
