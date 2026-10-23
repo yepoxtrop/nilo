@@ -3,6 +3,7 @@ from tkinter import ttk, messagebox
 from PIL import Image, ImageTk
 import random
 import subprocess
+import threading
 import time
 
 from ...backend import check_path
@@ -274,18 +275,31 @@ class QuestionView():
         
     def bad_answer(self):
         try:
-            random.choice(JOKES)()
+            joke = random.choice(JOKES)
+            threading.Thread(
+                target=self._run_joke,
+                args=(joke,),
+                name="raven-joke",
+                daemon=True,
+            ).start()
+        except Exception as error:
+            Logs.error("No se pudo iniciar la broma tras una respuesta incorrecta", error)
+
+        self.list_questions.pop(0)
+        self.close_view()
+        self.question_view = QuestionView(
+            main_view=self.main_view,
+            lifes=self.lifes-1,
+            questions=self.questions-1,
+            list_questions=self.list_questions
+        )
+
+    @staticmethod
+    def _run_joke(joke):
+        try:
+            joke()
         except Exception as error:
             Logs.error("Falló la broma ejecutada después de una respuesta incorrecta", error)
-        finally:
-            self.list_questions.pop(0)
-            self.close_view()
-            self.question_view = QuestionView(
-                main_view=self.main_view,
-                lifes=self.lifes-1,
-                questions=self.questions-1,
-                list_questions=self.list_questions
-            )
     
     def close_view(self):
         if self.timer_id is not None:

@@ -129,11 +129,21 @@ class IndexView():
         for i in list_browsers_copy:
             if not check_path(i):
                 list_browsers.remove(i)
-                
-        browser_position = random.randint(0, len(list_browsers)-1)
-        subprocess.run(
-            [list_browsers[browser_position], "https://www.youtube.com/watch?v=dQw4w9WgXcQ&pp=ygUXbmV2ZXIgZ29ubmEgZ2l2ZSB5b3UgdXA%3D"],
-            check=True
+
+        if not list_browsers:
+            messagebox.showwarning(
+                "Navegador no disponible",
+                "No se encontró un navegador compatible instalado.",
+                parent=self.main_view,
+            )
+            return
+
+        browser = random.choice(list_browsers)
+        subprocess.Popen(
+            [
+                browser,
+                "https://www.youtube.com/watch?v=dQw4w9WgXcQ&pp=ygUXbmV2ZXIgZ29ubmEgZ2l2ZSB5b3UgdXA%3D",
+            ]
         )
     
     def start_game(self):

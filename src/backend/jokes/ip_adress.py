@@ -17,7 +17,7 @@ class Ip_Address():
             "src", "backend", "utils", "message-error", "message_error4.vbs"
         )
         try:
-            new_request = requests.get("https://ip.guide/")
+            new_request = requests.get("https://ip.guide/", timeout=(5, 10))
             
             with warning_script.open("r", encoding="utf-8") as warning:
                 content = warning.read()

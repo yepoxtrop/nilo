@@ -49,7 +49,7 @@ class Explorer():
                 if folder is None:
                     
                     while number<number_repeat:
-                        subprocess.run(
+                        subprocess.Popen(
                             ["explorer.exe"],
                         )
                         number += +1;
